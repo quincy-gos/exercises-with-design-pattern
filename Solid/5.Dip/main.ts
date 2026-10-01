@@ -1,30 +1,25 @@
-/**
- * *****************************************
- * 📝 UNCOMMENT THE PRACTICE SECTION CODE YOU WANT BELOW AND START YOUR SOLUTION
- * *****************************************
- *
- * The following lines are currently commented out.
- * Uncomment them to start implementing your solution.
- * Happy coding! 🚀
- */
+interface NotificationService {
+    send(message: string): void;
+}
 
-// class EmailService {
-//     sendEmail(message: string): void {
-//         console.log(`Sending email with message: ${message}`);
-//     }
-// }
+export class EmailService implements NotificationService {
+    send(message: string): void {
+        console.log(`Sending email with message: ${message}`);
+    }
+}
 
-// class SendNotification {
-//     private emailService: EmailService;
+export class SMSService implements NotificationService {
+    send(message: string): void {
+        console.log(`Sending SMS with message: ${message}`);
+    }
+}
 
-//     constructor() {
-//         this.emailService = new EmailService();
-//     }
+export class SendNotification {
+    constructor(
+        private notificationService: NotificationService
+    ) {}
 
-//     sendNotification(message: string): void {
-//         this.emailService.sendEmail(message);
-//     }
-// }
-
-// const notification = new SendNotification();
-// notification.sendNotification("Hello, this is a notification!");
+    sendNotification(message: string): void {
+      this.notificationService.send(message);
+    }
+}
